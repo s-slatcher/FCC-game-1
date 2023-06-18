@@ -47,7 +47,7 @@ class OldMan {
         this.height = this.spriteHeight*this.scale;
         this.x = canvas.width;
         this.y = Math.random() * ((canvas.height -  this.height*2))
-        this.directionX = (5) * scale;
+        this.directionX = (2) * scale;
         this.angle = 0;
         this.angleRate = scale;
         this.markedForDeletion = false;
