@@ -20,10 +20,10 @@ class Cursor {
     constructor(){
         this.image = new Image();
         this.image.src = 'water-gun.png'
-        this.spriteWidth = 600/2;
-        this.spriteHeight = 536/2;
-        this.x = canvas.width - this.spriteWidth/1.75;
-        this.y = canvas.height - this.spriteHeight*1.5;
+        this.spriteWidth = 600;
+        this.spriteHeight = 536;
+        this.x = canvas.width - this.spriteWidth/2;
+        this.y = canvas.height - this.spriteHeight;
     }
     draw(){
         ctx.drawImage(this.image, this.x, this.y);
@@ -31,8 +31,8 @@ class Cursor {
     update(e){
         let mousePercentX = e.x/canvas.width;
         let mousePercentY = e.y/canvas.height;
-        this.x = canvas.width - this.spriteWidth/1.75 - 200*(1-mousePercentX);
-        this.y = canvas.height - this.spriteHeight*1.5 + 200*(mousePercentY);
+        this.x = canvas.width - this.spriteWidth/2 - (canvas.width/5)*(1-mousePercentX);
+        this.y = canvas.height - this.spriteHeight + (canvas.width/8)*(mousePercentY);
     }
 }
 
@@ -47,7 +47,7 @@ class OldMan {
         this.height = this.spriteHeight*this.scale;
         this.x = canvas.width;
         this.y = Math.random() * ((canvas.height -  this.height*2))
-        this.directionX = (1) * scale;
+        this.directionX = (2.5) * scale;
         this.angle = 0;
         this.angleRate = scale;
         this.markedForDeletion = false;
@@ -64,8 +64,8 @@ class OldMan {
     update(deltaTime){
         // if(this.y > canvas.height-this.height || this.y < 0) this.directionY *= -1;
         this.x -= this.directionX;
-        this.y += Math.sin(this.angle)*5*this.scale;
-        this.angle += 0.1*(1/this.scale);
+        this.y += Math.sin(this.angle)*2*this.scale;
+        this.angle += 0.05*(1/this.scale);
 
         if (this.x < 0 - this.width) this.markedForDeletion = true;
         this.timeSinceFlap += deltaTime;
@@ -173,7 +173,7 @@ window.addEventListener('mousedown', function(e){
 
 
 function drawScore(){
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = 'black';
     ctx.fillText('score: ' + score, 50, 75);
 }
 
